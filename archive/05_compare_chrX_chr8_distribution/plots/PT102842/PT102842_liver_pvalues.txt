@@ -1,0 +1,4 @@
+test	pvals
+wilcox	3.406551424788e-25
+t.test	3.11758714814667e-22
+ks.test	0

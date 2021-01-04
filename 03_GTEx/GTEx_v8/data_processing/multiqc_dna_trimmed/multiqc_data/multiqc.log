@@ -1,0 +1,241 @@
+[2019-10-25 08:08:42,712] multiqc                                            [DEBUG  ]  No MultiQC config found: /home/tphung3/softwares/miniconda3/envs/2019July_cayo/lib/python3.6/site-packages/multiqc_config.yaml
+[2019-10-25 08:08:42,712] multiqc                                            [DEBUG  ]  No MultiQC config found: /home/tphung3/.multiqc_config.yaml
+[2019-10-25 08:08:42,713] multiqc                                            [DEBUG  ]  No MultiQC config found: multiqc_config.yaml
+[2019-10-25 08:08:42,713] multiqc                                            [DEBUG  ]  Command used: /home/tphung3/softwares/miniconda3/envs/2019July_cayo/bin/multiqc --interactive -f -o multiqc_dna_trimmed fastqc_trimmed_dna
+[2019-10-25 08:08:43,575] multiqc                                            [DEBUG  ]  Latest MultiQC version is v1.7
+[2019-10-25 08:08:43,575] multiqc                                            [INFO   ]  This is MultiQC v1.7
+[2019-10-25 08:08:43,576] multiqc                                            [DEBUG  ]  Command     : /home/tphung3/softwares/miniconda3/envs/2019July_cayo/bin/multiqc --interactive -f -o multiqc_dna_trimmed fastqc_trimmed_dna
+[2019-10-25 08:08:43,576] multiqc                                            [DEBUG  ]  Working dir : /scratch/tphung3/Cayo_x_inactivation/GTEx/GTEx_v8/data_processing
+[2019-10-25 08:08:43,576] multiqc                                            [INFO   ]  Template    : default
+[2019-10-25 08:08:43,577] multiqc                                            [INFO   ]  Searching 'fastqc_trimmed_dna'
+[2019-10-25 08:08:43,578] multiqc                                            [DEBUG  ]  Analysing modules: custom_content, conpair, peddy, methylQA, phantompeakqualtools, qualimap, preseq, quast, qorts, rna_seqc, rsem, rseqc, busco, goleft_indexcov, disambiguate, supernova, deeptools, sargasso, verifybamid, mirtrace, happy, homer, macs2, theta2, snpeff, gatk, htseq, bcftools, featureCounts, dedup, damageprofiler, picard, prokka, samblaster, samtools, bamtools, jellyfish, vcftools, longranger, stacks, bbmap, bismark, biscuit, hicexplorer, hicup, hicpro, salmon, kallisto, slamdunk, star, hisat2, tophat, bowtie2, bowtie1, kat, leehom, adapterRemoval, clipandmerge, cutadapt, flexbar, trimmomatic, skewer, sortmerna, biobloomtools, fastq_screen, afterqc, fastp, fastqc, minionqc, clusterflow, bcl2fastq, interop, flash
+[2019-10-25 08:08:43,578] multiqc                                            [DEBUG  ]  Using temporary directory for creating report: /tmp/tmp7g27fu87
+[2019-10-25 08:08:43,839] multiqc                                            [DEBUG  ]  Ignoring file as matched an ignore pattern: GTEX-11GSP-0004_C31L3.5_trimmed_read1_fastqc.html
+[2019-10-25 08:08:43,840] multiqc                                            [DEBUG  ]  Ignoring file as matched an ignore pattern: GTEX-14DAQ-0004_C3TY8.5_trimmed_read1_fastqc.html
+[2019-10-25 08:08:43,840] multiqc                                            [DEBUG  ]  Ignoring file as matched an ignore pattern: GTEX-1A32A-0001_C40JE.3_trimmed_read1_fastqc.html
+[2019-10-25 08:08:43,841] multiqc                                            [DEBUG  ]  Ignoring file as matched an ignore pattern: GTEX-1A32A-0001_C40JE.8_trimmed_read1_fastqc.html
+[2019-10-25 08:08:43,841] multiqc                                            [DEBUG  ]  Ignoring file as matched an ignore pattern: GTEX-1A8FM-0004_C40JE.8_trimmed_read2_fastqc.html
+[2019-10-25 08:08:43,841] multiqc                                            [DEBUG  ]  Ignoring file as matched an ignore pattern: GTEX-1A8FM-0004_C4104.4_trimmed_read1_fastqc.html
+[2019-10-25 08:08:43,841] multiqc                                            [DEBUG  ]  Ignoring file as matched an ignore pattern: GTEX-15ER7-0002_C4RUH.2_trimmed_read1_fastqc.html
+[2019-10-25 08:08:43,842] multiqc                                            [DEBUG  ]  Ignoring file as matched an ignore pattern: GTEX-15ER7-0002_C4RUH.7_trimmed_read1_fastqc.html
+[2019-10-25 08:08:43,843] multiqc                                            [DEBUG  ]  Ignoring file as matched an ignore pattern: GTEX-1A8FM-0004_C40JE.7_trimmed_read2_fastqc.html
+[2019-10-25 08:08:43,843] multiqc                                            [DEBUG  ]  Ignoring file as matched an ignore pattern: GTEX-1A32A-0001_C40JE.7_trimmed_read1_fastqc.html
+[2019-10-25 08:08:43,844] multiqc                                            [DEBUG  ]  Ignoring file as matched an ignore pattern: GTEX-15ER7-0002_C4N20.2_trimmed_read2_fastqc.html
+[2019-10-25 08:08:43,845] multiqc                                            [DEBUG  ]  Ignoring file as matched an ignore pattern: GTEX-15ER7-0002_C4N20.3_trimmed_read2_fastqc.html
+[2019-10-25 08:08:43,845] multiqc                                            [DEBUG  ]  Ignoring file as matched an ignore pattern: GTEX-12WSD-0002_C3715.2_trimmed_read2_fastqc.html
+[2019-10-25 08:08:43,845] multiqc                                            [DEBUG  ]  Ignoring file as matched an ignore pattern: GTEX-15ER7-0002_C4N20.1_trimmed_read2_fastqc.html
+[2019-10-25 08:08:43,846] multiqc                                            [DEBUG  ]  Ignoring file as matched an ignore pattern: GTEX-11GSP-0004_C31L3.6_trimmed_read1_fastqc.html
+[2019-10-25 08:08:43,846] multiqc                                            [DEBUG  ]  Ignoring file as matched an ignore pattern: GTEX-1A8FM-0004_C40KK.1_trimmed_read1_fastqc.html
+[2019-10-25 08:08:43,846] multiqc                                            [DEBUG  ]  Ignoring file as matched an ignore pattern: GTEX-131YS-0003_C3TV7.4_trimmed_read1_fastqc.html
+[2019-10-25 08:08:43,846] multiqc                                            [DEBUG  ]  Ignoring file as matched an ignore pattern: GTEX-12WSD-0002_C3715.1_trimmed_read1_fastqc.html
+[2019-10-25 08:08:43,847] multiqc                                            [DEBUG  ]  Ignoring file as matched an ignore pattern: GTEX-15ER7-0002_C4N20.8_trimmed_read1_fastqc.html
+[2019-10-25 08:08:43,848] multiqc                                            [DEBUG  ]  Ignoring file as matched an ignore pattern: GTEX-1A32A-0001_C40KK.8_trimmed_read1_fastqc.html
+[2019-10-25 08:08:43,850] multiqc                                            [DEBUG  ]  Ignoring file as matched an ignore pattern: GTEX-1A8FM-0004_C4104.7_trimmed_read1_fastqc.html
+[2019-10-25 08:08:43,850] multiqc                                            [DEBUG  ]  Ignoring file as matched an ignore pattern: GTEX-1A8FM-0004_C40JE.1_trimmed_read2_fastqc.html
+[2019-10-25 08:08:43,851] multiqc                                            [DEBUG  ]  Ignoring file as matched an ignore pattern: GTEX-131YS-0003_C3TV7.3_trimmed_read1_fastqc.html
+[2019-10-25 08:08:43,852] multiqc                                            [DEBUG  ]  Ignoring file as matched an ignore pattern: GTEX-1A8FM-0004_C40KK.2_trimmed_read2_fastqc.html
+[2019-10-25 08:08:43,852] multiqc                                            [DEBUG  ]  Ignoring file as matched an ignore pattern: GTEX-1A8FM-0004_C40JE.5_trimmed_read1_fastqc.html
+[2019-10-25 08:08:43,852] multiqc                                            [DEBUG  ]  Ignoring file as matched an ignore pattern: GTEX-1A8FM-0004_C40KK.5_trimmed_read1_fastqc.html
+[2019-10-25 08:08:43,852] multiqc                                            [DEBUG  ]  Ignoring file as matched an ignore pattern: GTEX-1A32A-0001_C4104.4_trimmed_read2_fastqc.html
+[2019-10-25 08:08:43,852] multiqc                                            [DEBUG  ]  Ignoring file as matched an ignore pattern: GTEX-1A32A-0001_C4104.1_trimmed_read2_fastqc.html
+[2019-10-25 08:08:43,852] multiqc                                            [DEBUG  ]  Ignoring file as matched an ignore pattern: GTEX-1A8FM-0004_C40JE.3_trimmed_read2_fastqc.html
+[2019-10-25 08:08:43,853] multiqc                                            [DEBUG  ]  Ignoring file as matched an ignore pattern: GTEX-15ER7-0002_C4N20.5_trimmed_read2_fastqc.html
+[2019-10-25 08:08:43,854] multiqc                                            [DEBUG  ]  Ignoring file as matched an ignore pattern: GTEX-15ER7-0002_C4RUH.8_trimmed_read2_fastqc.html
+[2019-10-25 08:08:43,854] multiqc                                            [DEBUG  ]  Ignoring file as matched an ignore pattern: GTEX-14DAQ-0004_C3U3B.8_trimmed_read1_fastqc.html
+[2019-10-25 08:08:43,854] multiqc                                            [DEBUG  ]  Ignoring file as matched an ignore pattern: GTEX-1A32A-0001_C4104.5_trimmed_read1_fastqc.html
+[2019-10-25 08:08:43,854] multiqc                                            [DEBUG  ]  Ignoring file as matched an ignore pattern: GTEX-15ER7-0002_C4N20.7_trimmed_read1_fastqc.html
+[2019-10-25 08:08:43,854] multiqc                                            [DEBUG  ]  Ignoring file as matched an ignore pattern: GTEX-1A8FM-0004_C4104.6_trimmed_read1_fastqc.html
+[2019-10-25 08:08:43,855] multiqc                                            [DEBUG  ]  Ignoring file as matched an ignore pattern: GTEX-1A8FM-0004_C4104.1_trimmed_read1_fastqc.html
+[2019-10-25 08:08:43,855] multiqc                                            [DEBUG  ]  Ignoring file as matched an ignore pattern: GTEX-1A8FM-0004_C40JE.7_trimmed_read1_fastqc.html
+[2019-10-25 08:08:43,856] multiqc                                            [DEBUG  ]  Ignoring file as matched an ignore pattern: GTEX-1A32A-0001_C40JE.1_trimmed_read1_fastqc.html
+[2019-10-25 08:08:43,857] multiqc                                            [DEBUG  ]  Ignoring file as matched an ignore pattern: GTEX-1A32A-0001_C40KK.1_trimmed_read2_fastqc.html
+[2019-10-25 08:08:43,857] multiqc                                            [DEBUG  ]  Ignoring file as matched an ignore pattern: GTEX-1A32A-0001_C40JE.2_trimmed_read2_fastqc.html
+[2019-10-25 08:08:43,857] multiqc                                            [DEBUG  ]  Ignoring file as matched an ignore pattern: GTEX-1A8FM-0004_C40KK.3_trimmed_read1_fastqc.html
+[2019-10-25 08:08:43,858] multiqc                                            [DEBUG  ]  Ignoring file as matched an ignore pattern: GTEX-15ER7-0002_C4RUH.4_trimmed_read2_fastqc.html
+[2019-10-25 08:08:43,858] multiqc                                            [DEBUG  ]  Ignoring file as matched an ignore pattern: GTEX-1A32A-0001_C40KK.4_trimmed_read1_fastqc.html
+[2019-10-25 08:08:43,859] multiqc                                            [DEBUG  ]  Ignoring file as matched an ignore pattern: GTEX-12WSD-0002_C3JV3.5_trimmed_read1_fastqc.html
+[2019-10-25 08:08:43,859] multiqc                                            [DEBUG  ]  Ignoring file as matched an ignore pattern: GTEX-1A32A-0001_C4104.1_trimmed_read1_fastqc.html
+[2019-10-25 08:08:43,860] multiqc                                            [DEBUG  ]  Ignoring file as matched an ignore pattern: GTEX-1A32A-0001_C40KK.2_trimmed_read2_fastqc.html
+[2019-10-25 08:08:43,860] multiqc                                            [DEBUG  ]  Ignoring file as matched an ignore pattern: GTEX-15ER7-0002_C4RUH.1_trimmed_read1_fastqc.html
+[2019-10-25 08:08:43,860] multiqc                                            [DEBUG  ]  Ignoring file as matched an ignore pattern: GTEX-1A32A-0001_C40KK.8_trimmed_read2_fastqc.html
+[2019-10-25 08:08:43,861] multiqc                                            [DEBUG  ]  Ignoring file as matched an ignore pattern: GTEX-1A32A-0001_C40JE.4_trimmed_read1_fastqc.html
+[2019-10-25 08:08:43,863] multiqc                                            [DEBUG  ]  Ignoring file as matched an ignore pattern: GTEX-1A8FM-0004_C40JE.2_trimmed_read1_fastqc.html
+[2019-10-25 08:08:43,864] multiqc                                            [DEBUG  ]  Ignoring file as matched an ignore pattern: GTEX-15ER7-0002_C4N20.2_trimmed_read1_fastqc.html
+[2019-10-25 08:08:43,864] multiqc                                            [DEBUG  ]  Ignoring file as matched an ignore pattern: GTEX-1A32A-0001_C40KK.3_trimmed_read1_fastqc.html
+[2019-10-25 08:08:43,864] multiqc                                            [DEBUG  ]  Ignoring file as matched an ignore pattern: GTEX-14DAQ-0004_C3TY8.6_trimmed_read2_fastqc.html
+[2019-10-25 08:08:43,864] multiqc                                            [DEBUG  ]  Ignoring file as matched an ignore pattern: GTEX-131YS-0003_C3TV7.4_trimmed_read2_fastqc.html
+[2019-10-25 08:08:43,868] multiqc                                            [DEBUG  ]  Ignoring file as matched an ignore pattern: GTEX-1A32A-0001_C4104.6_trimmed_read1_fastqc.html
+[2019-10-25 08:08:43,868] multiqc                                            [DEBUG  ]  Ignoring file as matched an ignore pattern: GTEX-15ER7-0002_C4N20.8_trimmed_read2_fastqc.html
+[2019-10-25 08:08:43,869] multiqc                                            [DEBUG  ]  Ignoring file as matched an ignore pattern: GTEX-1A32A-0001_C40JE.5_trimmed_read2_fastqc.html
+[2019-10-25 08:08:43,869] multiqc                                            [DEBUG  ]  Ignoring file as matched an ignore pattern: GTEX-1A32A-0001_C4104.6_trimmed_read2_fastqc.html
+[2019-10-25 08:08:43,869] multiqc                                            [DEBUG  ]  Ignoring file as matched an ignore pattern: GTEX-1A32A-0001_C40KK.1_trimmed_read1_fastqc.html
+[2019-10-25 08:08:43,870] multiqc                                            [DEBUG  ]  Ignoring file as matched an ignore pattern: GTEX-15ER7-0002_C4RUH.4_trimmed_read1_fastqc.html
+[2019-10-25 08:08:43,870] multiqc                                            [DEBUG  ]  Ignoring file as matched an ignore pattern: GTEX-1A8FM-0004_C40KK.6_trimmed_read1_fastqc.html
+[2019-10-25 08:08:43,870] multiqc                                            [DEBUG  ]  Ignoring file as matched an ignore pattern: GTEX-15ER7-0002_C4RUH.5_trimmed_read2_fastqc.html
+[2019-10-25 08:08:43,872] multiqc                                            [DEBUG  ]  Ignoring file as matched an ignore pattern: GTEX-1A32A-0001_C4104.4_trimmed_read1_fastqc.html
+[2019-10-25 08:08:43,872] multiqc                                            [DEBUG  ]  Ignoring file as matched an ignore pattern: GTEX-15ER7-0002_C4RUH.7_trimmed_read2_fastqc.html
+[2019-10-25 08:08:43,872] multiqc                                            [DEBUG  ]  Ignoring file as matched an ignore pattern: GTEX-1A8FM-0004_C40JE.6_trimmed_read2_fastqc.html
+[2019-10-25 08:08:43,872] multiqc                                            [DEBUG  ]  Ignoring file as matched an ignore pattern: GTEX-1A32A-0001_C40JE.1_trimmed_read2_fastqc.html
+[2019-10-25 08:08:43,873] multiqc                                            [DEBUG  ]  Ignoring file as matched an ignore pattern: GTEX-1A8FM-0004_C40JE.4_trimmed_read1_fastqc.html
+[2019-10-25 08:08:43,873] multiqc                                            [DEBUG  ]  Ignoring file as matched an ignore pattern: GTEX-1A32A-0001_C40JE.8_trimmed_read2_fastqc.html
+[2019-10-25 08:08:43,873] multiqc                                            [DEBUG  ]  Ignoring file as matched an ignore pattern: GTEX-11GSP-0004_C31JT.3_trimmed_read1_fastqc.html
+[2019-10-25 08:08:43,873] multiqc                                            [DEBUG  ]  Ignoring file as matched an ignore pattern: GTEX-15ER7-0002_C4N20.6_trimmed_read2_fastqc.html
+[2019-10-25 08:08:43,874] multiqc                                            [DEBUG  ]  Ignoring file as matched an ignore pattern: GTEX-1A8FM-0004_C40KK.4_trimmed_read2_fastqc.html
+[2019-10-25 08:08:43,875] multiqc                                            [DEBUG  ]  Ignoring file as matched an ignore pattern: GTEX-131YS-0003_C3TV7.3_trimmed_read2_fastqc.html
+[2019-10-25 08:08:43,876] multiqc                                            [DEBUG  ]  Ignoring file as matched an ignore pattern: GTEX-1A8FM-0004_C4104.1_trimmed_read2_fastqc.html
+[2019-10-25 08:08:43,876] multiqc                                            [DEBUG  ]  Ignoring file as matched an ignore pattern: GTEX-1A32A-0001_C40JE.6_trimmed_read2_fastqc.html
+[2019-10-25 08:08:43,877] multiqc                                            [DEBUG  ]  Ignoring file as matched an ignore pattern: GTEX-1A8FM-0004_C40KK.7_trimmed_read1_fastqc.html
+[2019-10-25 08:08:43,878] multiqc                                            [DEBUG  ]  Ignoring file as matched an ignore pattern: GTEX-1A8FM-0004_C40KK.8_trimmed_read2_fastqc.html
+[2019-10-25 08:08:43,878] multiqc                                            [DEBUG  ]  Ignoring file as matched an ignore pattern: GTEX-1A8FM-0004_C4104.5_trimmed_read1_fastqc.html
+[2019-10-25 08:08:43,879] multiqc                                            [DEBUG  ]  Ignoring file as matched an ignore pattern: GTEX-15ER7-0002_C4RUH.8_trimmed_read1_fastqc.html
+[2019-10-25 08:08:43,879] multiqc                                            [DEBUG  ]  Ignoring file as matched an ignore pattern: GTEX-1A8FM-0004_C40JE.4_trimmed_read2_fastqc.html
+[2019-10-25 08:08:43,880] multiqc                                            [DEBUG  ]  Ignoring file as matched an ignore pattern: GTEX-1A8FM-0004_C40JE.6_trimmed_read1_fastqc.html
+[2019-10-25 08:08:43,880] multiqc                                            [DEBUG  ]  Ignoring file as matched an ignore pattern: GTEX-1A32A-0001_C40KK.7_trimmed_read1_fastqc.html
+[2019-10-25 08:08:43,880] multiqc                                            [DEBUG  ]  Ignoring file as matched an ignore pattern: GTEX-1A8FM-0004_C4104.5_trimmed_read2_fastqc.html
+[2019-10-25 08:08:43,881] multiqc                                            [DEBUG  ]  Ignoring file as matched an ignore pattern: GTEX-15ER7-0002_C4RUH.3_trimmed_read2_fastqc.html
+[2019-10-25 08:08:43,882] multiqc                                            [DEBUG  ]  Ignoring file as matched an ignore pattern: GTEX-1A32A-0001_C40JE.5_trimmed_read1_fastqc.html
+[2019-10-25 08:08:43,884] multiqc                                            [DEBUG  ]  Ignoring file as matched an ignore pattern: GTEX-1A8FM-0004_C4104.4_trimmed_read2_fastqc.html
+[2019-10-25 08:08:43,884] multiqc                                            [DEBUG  ]  Ignoring file as matched an ignore pattern: GTEX-1A32A-0001_C40KK.6_trimmed_read2_fastqc.html
+[2019-10-25 08:08:43,884] multiqc                                            [DEBUG  ]  Ignoring file as matched an ignore pattern: GTEX-1A32A-0001_C4104.7_trimmed_read2_fastqc.html
+[2019-10-25 08:08:43,885] multiqc                                            [DEBUG  ]  Ignoring file as matched an ignore pattern: GTEX-1A32A-0001_C40JE.4_trimmed_read2_fastqc.html
+[2019-10-25 08:08:43,885] multiqc                                            [DEBUG  ]  Ignoring file as matched an ignore pattern: GTEX-1A32A-0001_C4104.3_trimmed_read2_fastqc.html
+[2019-10-25 08:08:43,886] multiqc                                            [DEBUG  ]  Ignoring file as matched an ignore pattern: GTEX-15ER7-0002_C4N20.6_trimmed_read1_fastqc.html
+[2019-10-25 08:08:43,886] multiqc                                            [DEBUG  ]  Ignoring file as matched an ignore pattern: GTEX-1A32A-0001_C40KK.7_trimmed_read2_fastqc.html
+[2019-10-25 08:08:43,886] multiqc                                            [DEBUG  ]  Ignoring file as matched an ignore pattern: GTEX-11GSP-0004_C31JT.3_trimmed_read2_fastqc.html
+[2019-10-25 08:08:43,887] multiqc                                            [DEBUG  ]  Ignoring file as matched an ignore pattern: GTEX-14DAQ-0004_C3TY8.6_trimmed_read1_fastqc.html
+[2019-10-25 08:08:43,887] multiqc                                            [DEBUG  ]  Ignoring file as matched an ignore pattern: GTEX-1A32A-0001_C40KK.3_trimmed_read2_fastqc.html
+[2019-10-25 08:08:43,887] multiqc                                            [DEBUG  ]  Ignoring file as matched an ignore pattern: GTEX-1A8FM-0004_C40KK.3_trimmed_read2_fastqc.html
+[2019-10-25 08:08:43,889] multiqc                                            [DEBUG  ]  Ignoring file as matched an ignore pattern: GTEX-12WSD-0002_C3715.1_trimmed_read2_fastqc.html
+[2019-10-25 08:08:43,889] multiqc                                            [DEBUG  ]  Ignoring file as matched an ignore pattern: GTEX-1A8FM-0004_C40KK.2_trimmed_read1_fastqc.html
+[2019-10-25 08:08:43,889] multiqc                                            [DEBUG  ]  Ignoring file as matched an ignore pattern: GTEX-1A32A-0001_C4104.2_trimmed_read1_fastqc.html
+[2019-10-25 08:08:43,889] multiqc                                            [DEBUG  ]  Ignoring file as matched an ignore pattern: GTEX-1A8FM-0004_C40KK.6_trimmed_read2_fastqc.html
+[2019-10-25 08:08:43,890] multiqc                                            [DEBUG  ]  Ignoring file as matched an ignore pattern: GTEX-15ER7-0002_C4RUH.1_trimmed_read2_fastqc.html
+[2019-10-25 08:08:43,890] multiqc                                            [DEBUG  ]  Ignoring file as matched an ignore pattern: GTEX-1A32A-0001_C40KK.4_trimmed_read2_fastqc.html
+[2019-10-25 08:08:43,892] multiqc                                            [DEBUG  ]  Ignoring file as matched an ignore pattern: GTEX-1A8FM-0004_C4104.7_trimmed_read2_fastqc.html
+[2019-10-25 08:08:43,892] multiqc                                            [DEBUG  ]  Ignoring file as matched an ignore pattern: GTEX-15ER7-0002_C4N20.7_trimmed_read2_fastqc.html
+[2019-10-25 08:08:43,893] multiqc                                            [DEBUG  ]  Ignoring file as matched an ignore pattern: GTEX-15ER7-0002_C4N20.1_trimmed_read1_fastqc.html
+[2019-10-25 08:08:43,895] multiqc                                            [DEBUG  ]  Ignoring file as matched an ignore pattern: GTEX-15ER7-0002_C4RUH.5_trimmed_read1_fastqc.html
+[2019-10-25 08:08:43,896] multiqc                                            [DEBUG  ]  Ignoring file as matched an ignore pattern: GTEX-1A8FM-0004_C40KK.1_trimmed_read2_fastqc.html
+[2019-10-25 08:08:43,898] multiqc                                            [DEBUG  ]  Ignoring file as matched an ignore pattern: GTEX-15ER7-0002_C4RUH.6_trimmed_read1_fastqc.html
+[2019-10-25 08:08:43,898] multiqc                                            [DEBUG  ]  Ignoring file as matched an ignore pattern: GTEX-12WSD-0002_C3JV3.5_trimmed_read2_fastqc.html
+[2019-10-25 08:08:43,900] multiqc                                            [DEBUG  ]  Ignoring file as matched an ignore pattern: GTEX-1A32A-0001_C40KK.6_trimmed_read1_fastqc.html
+[2019-10-25 08:08:43,901] multiqc                                            [DEBUG  ]  Ignoring file as matched an ignore pattern: GTEX-1A8FM-0004_C40JE.5_trimmed_read2_fastqc.html
+[2019-10-25 08:08:43,901] multiqc                                            [DEBUG  ]  Ignoring file as matched an ignore pattern: GTEX-15ER7-0002_C4RUH.6_trimmed_read2_fastqc.html
+[2019-10-25 08:08:43,902] multiqc                                            [DEBUG  ]  Ignoring file as matched an ignore pattern: GTEX-1A32A-0001_C4104.7_trimmed_read1_fastqc.html
+[2019-10-25 08:08:43,902] multiqc                                            [DEBUG  ]  Ignoring file as matched an ignore pattern: GTEX-1A32A-0001_C4104.5_trimmed_read2_fastqc.html
+[2019-10-25 08:08:43,902] multiqc                                            [DEBUG  ]  Ignoring file as matched an ignore pattern: GTEX-14DAQ-0004_C3TY8.5_trimmed_read2_fastqc.html
+[2019-10-25 08:08:43,902] multiqc                                            [DEBUG  ]  Ignoring file as matched an ignore pattern: GTEX-1A32A-0001_C40KK.5_trimmed_read2_fastqc.html
+[2019-10-25 08:08:43,902] multiqc                                            [DEBUG  ]  Ignoring file as matched an ignore pattern: GTEX-1A8FM-0004_C4104.2_trimmed_read2_fastqc.html
+[2019-10-25 08:08:43,903] multiqc                                            [DEBUG  ]  Ignoring file as matched an ignore pattern: GTEX-131YS-0003_C3U0V.3_trimmed_read2_fastqc.html
+[2019-10-25 08:08:43,905] multiqc                                            [DEBUG  ]  Ignoring file as matched an ignore pattern: GTEX-1A8FM-0004_C4104.6_trimmed_read2_fastqc.html
+[2019-10-25 08:08:43,905] multiqc                                            [DEBUG  ]  Ignoring file as matched an ignore pattern: GTEX-1A8FM-0004_C40KK.4_trimmed_read1_fastqc.html
+[2019-10-25 08:08:43,905] multiqc                                            [DEBUG  ]  Ignoring file as matched an ignore pattern: GTEX-1A8FM-0004_C40KK.7_trimmed_read2_fastqc.html
+[2019-10-25 08:08:43,905] multiqc                                            [DEBUG  ]  Ignoring file as matched an ignore pattern: GTEX-1A8FM-0004_C40KK.5_trimmed_read2_fastqc.html
+[2019-10-25 08:08:43,906] multiqc                                            [DEBUG  ]  Ignoring file as matched an ignore pattern: GTEX-15ER7-0002_C4N20.3_trimmed_read1_fastqc.html
+[2019-10-25 08:08:43,907] multiqc                                            [DEBUG  ]  Ignoring file as matched an ignore pattern: GTEX-1A8FM-0004_C4104.3_trimmed_read2_fastqc.html
+[2019-10-25 08:08:43,908] multiqc                                            [DEBUG  ]  Ignoring file as matched an ignore pattern: GTEX-1A8FM-0004_C40KK.8_trimmed_read1_fastqc.html
+[2019-10-25 08:08:43,908] multiqc                                            [DEBUG  ]  Ignoring file as matched an ignore pattern: GTEX-15ER7-0002_C4N20.5_trimmed_read1_fastqc.html
+[2019-10-25 08:08:43,908] multiqc                                            [DEBUG  ]  Ignoring file as matched an ignore pattern: GTEX-12WSD-0002_C3715.2_trimmed_read1_fastqc.html
+[2019-10-25 08:08:43,908] multiqc                                            [DEBUG  ]  Ignoring file as matched an ignore pattern: GTEX-1A32A-0001_C40KK.2_trimmed_read1_fastqc.html
+[2019-10-25 08:08:43,909] multiqc                                            [DEBUG  ]  Ignoring file as matched an ignore pattern: GTEX-1A32A-0001_C40JE.6_trimmed_read1_fastqc.html
+[2019-10-25 08:08:43,909] multiqc                                            [DEBUG  ]  Ignoring file as matched an ignore pattern: GTEX-131YS-0003_C3U0V.3_trimmed_read1_fastqc.html
+[2019-10-25 08:08:43,909] multiqc                                            [DEBUG  ]  Ignoring file as matched an ignore pattern: GTEX-15ER7-0002_C4RUH.3_trimmed_read1_fastqc.html
+[2019-10-25 08:08:43,910] multiqc                                            [DEBUG  ]  Ignoring file as matched an ignore pattern: GTEX-1A32A-0001_C40JE.7_trimmed_read2_fastqc.html
+[2019-10-25 08:08:43,911] multiqc                                            [DEBUG  ]  Ignoring file as matched an ignore pattern: GTEX-1A32A-0001_C40JE.2_trimmed_read1_fastqc.html
+[2019-10-25 08:08:43,911] multiqc                                            [DEBUG  ]  Ignoring file as matched an ignore pattern: GTEX-1A8FM-0004_C40JE.2_trimmed_read2_fastqc.html
+[2019-10-25 08:08:43,911] multiqc                                            [DEBUG  ]  Ignoring file as matched an ignore pattern: GTEX-11GSP-0004_C31L3.5_trimmed_read2_fastqc.html
+[2019-10-25 08:08:43,912] multiqc                                            [DEBUG  ]  Ignoring file as matched an ignore pattern: GTEX-1A32A-0001_C4104.3_trimmed_read1_fastqc.html
+[2019-10-25 08:08:43,912] multiqc                                            [DEBUG  ]  Ignoring file as matched an ignore pattern: GTEX-15ER7-0002_C4N20.4_trimmed_read1_fastqc.html
+[2019-10-25 08:08:43,912] multiqc                                            [DEBUG  ]  Ignoring file as matched an ignore pattern: GTEX-14DAQ-0004_C3U3B.8_trimmed_read2_fastqc.html
+[2019-10-25 08:08:43,912] multiqc                                            [DEBUG  ]  Ignoring file as matched an ignore pattern: GTEX-1A8FM-0004_C40JE.3_trimmed_read1_fastqc.html
+[2019-10-25 08:08:43,913] multiqc                                            [DEBUG  ]  Ignoring file as matched an ignore pattern: GTEX-11GSP-0004_C31L3.6_trimmed_read2_fastqc.html
+[2019-10-25 08:08:43,913] multiqc                                            [DEBUG  ]  Ignoring file as matched an ignore pattern: GTEX-1A8FM-0004_C4104.3_trimmed_read1_fastqc.html
+[2019-10-25 08:08:43,914] multiqc                                            [DEBUG  ]  Ignoring file as matched an ignore pattern: GTEX-1A8FM-0004_C40JE.1_trimmed_read1_fastqc.html
+[2019-10-25 08:08:43,914] multiqc                                            [DEBUG  ]  Ignoring file as matched an ignore pattern: GTEX-1A8FM-0004_C40JE.8_trimmed_read1_fastqc.html
+[2019-10-25 08:08:43,915] multiqc                                            [DEBUG  ]  Ignoring file as matched an ignore pattern: GTEX-1A32A-0001_C40JE.3_trimmed_read2_fastqc.html
+[2019-10-25 08:08:43,916] multiqc                                            [DEBUG  ]  Ignoring file as matched an ignore pattern: GTEX-1A32A-0001_C4104.2_trimmed_read2_fastqc.html
+[2019-10-25 08:08:43,919] multiqc                                            [DEBUG  ]  Ignoring file as matched an ignore pattern: GTEX-15ER7-0002_C4N20.4_trimmed_read2_fastqc.html
+[2019-10-25 08:08:43,919] multiqc                                            [DEBUG  ]  Ignoring file as matched an ignore pattern: GTEX-1A32A-0001_C40KK.5_trimmed_read1_fastqc.html
+[2019-10-25 08:08:43,920] multiqc                                            [DEBUG  ]  Ignoring file as matched an ignore pattern: GTEX-15ER7-0002_C4RUH.2_trimmed_read2_fastqc.html
+[2019-10-25 08:08:43,920] multiqc                                            [DEBUG  ]  Ignoring file as matched an ignore pattern: GTEX-1A8FM-0004_C4104.2_trimmed_read1_fastqc.html
+[2019-10-25 08:08:45,233] multiqc                                            [DEBUG  ]  No samples found: custom_content
+[2019-10-25 08:08:45,244] multiqc                                            [DEBUG  ]  No samples found: conpair
+[2019-10-25 08:08:45,261] multiqc                                            [DEBUG  ]  No samples found: peddy
+[2019-10-25 08:08:45,271] multiqc                                            [DEBUG  ]  No samples found: methylQA
+[2019-10-25 08:08:45,281] multiqc                                            [DEBUG  ]  No samples found: phantompeakqualtools
+[2019-10-25 08:08:45,312] multiqc                                            [DEBUG  ]  No samples found: qualimap
+[2019-10-25 08:08:45,323] multiqc                                            [DEBUG  ]  No samples found: preseq
+[2019-10-25 08:08:45,334] multiqc                                            [DEBUG  ]  No samples found: quast
+[2019-10-25 08:08:45,344] multiqc                                            [DEBUG  ]  No samples found: qorts
+[2019-10-25 08:08:45,359] multiqc                                            [DEBUG  ]  No samples found: rna_seqc
+[2019-10-25 08:08:45,369] multiqc                                            [DEBUG  ]  No samples found: rsem
+[2019-10-25 08:08:45,437] multiqc                                            [DEBUG  ]  No samples found: rseqc
+[2019-10-25 08:08:45,448] multiqc                                            [DEBUG  ]  No samples found: busco
+[2019-10-25 08:08:45,459] multiqc                                            [DEBUG  ]  No samples found: goleft_indexcov
+[2019-10-25 08:08:45,470] multiqc                                            [DEBUG  ]  No samples found: disambiguate
+[2019-10-25 08:08:45,481] multiqc                                            [DEBUG  ]  No samples found: supernova
+[2019-10-25 08:08:45,530] multiqc                                            [DEBUG  ]  No samples found: deeptools
+[2019-10-25 08:08:45,541] multiqc                                            [DEBUG  ]  No samples found: sargasso
+[2019-10-25 08:08:45,555] multiqc                                            [DEBUG  ]  No samples found: verifybamid
+[2019-10-25 08:08:45,564] multiqc                                            [DEBUG  ]  No samples found: mirtrace
+[2019-10-25 08:08:45,575] multiqc                                            [DEBUG  ]  No samples found: happy
+[2019-10-25 08:08:45,590] multiqc                                            [DEBUG  ]  No samples found: homer
+[2019-10-25 08:08:45,621] multiqc                                            [DEBUG  ]  No samples found: macs2
+[2019-10-25 08:08:45,651] multiqc                                            [DEBUG  ]  No samples found: theta2
+[2019-10-25 08:08:45,662] multiqc                                            [DEBUG  ]  No samples found: snpeff
+[2019-10-25 08:08:45,686] multiqc                                            [DEBUG  ]  No samples found: gatk
+[2019-10-25 08:08:45,697] multiqc                                            [DEBUG  ]  No samples found: htseq
+[2019-10-25 08:08:45,724] multiqc                                            [DEBUG  ]  No samples found: bcftools
+[2019-10-25 08:08:45,743] multiqc                                            [DEBUG  ]  No samples found: featureCounts
+[2019-10-25 08:08:45,752] multiqc                                            [DEBUG  ]  No samples found: dedup
+[2019-10-25 08:08:45,762] multiqc                                            [DEBUG  ]  No samples found: damageprofiler
+[2019-10-25 08:08:45,802] multiqc                                            [DEBUG  ]  No samples found: picard
+[2019-10-25 08:08:45,812] multiqc                                            [DEBUG  ]  No samples found: prokka
+[2019-10-25 08:08:45,823] multiqc                                            [DEBUG  ]  No samples found: samblaster
+[2019-10-25 08:08:45,841] multiqc                                            [DEBUG  ]  No samples found: samtools
+[2019-10-25 08:08:45,853] multiqc                                            [DEBUG  ]  No samples found: bamtools
+[2019-10-25 08:08:45,863] multiqc                                            [DEBUG  ]  No samples found: jellyfish
+[2019-10-25 08:08:45,905] multiqc                                            [DEBUG  ]  No samples found: vcftools
+[2019-10-25 08:08:45,916] multiqc                                            [DEBUG  ]  No samples found: longranger
+[2019-10-25 08:08:45,926] multiqc                                            [DEBUG  ]  No samples found: stacks
+[2019-10-25 08:08:46,007] multiqc                                            [DEBUG  ]  No samples found: bbmap
+[2019-10-25 08:08:46,017] multiqc                                            [DEBUG  ]  No samples found: bismark
+[2019-10-25 08:08:46,028] multiqc                                            [DEBUG  ]  No samples found: biscuit
+[2019-10-25 08:08:46,038] multiqc                                            [DEBUG  ]  No samples found: hicexplorer
+[2019-10-25 08:08:46,048] multiqc                                            [DEBUG  ]  No samples found: hicup
+[2019-10-25 08:08:46,058] multiqc                                            [DEBUG  ]  No samples found: hicpro
+[2019-10-25 08:08:46,068] multiqc                                            [DEBUG  ]  No samples found: salmon
+[2019-10-25 08:08:46,085] multiqc                                            [DEBUG  ]  No samples found: kallisto
+[2019-10-25 08:08:46,096] multiqc                                            [DEBUG  ]  No samples found: slamdunk
+[2019-10-25 08:08:46,116] multiqc                                            [DEBUG  ]  No samples found: star
+[2019-10-25 08:08:46,129] multiqc                                            [DEBUG  ]  No samples found: hisat2
+[2019-10-25 08:08:46,139] multiqc                                            [DEBUG  ]  No samples found: tophat
+[2019-10-25 08:08:46,151] multiqc                                            [DEBUG  ]  No samples found: bowtie2
+[2019-10-25 08:08:46,162] multiqc                                            [DEBUG  ]  No samples found: bowtie1
+[2019-10-25 08:08:46,173] multiqc                                            [DEBUG  ]  No samples found: kat
+[2019-10-25 08:08:46,183] multiqc                                            [DEBUG  ]  No samples found: leehom
+[2019-10-25 08:08:46,194] multiqc                                            [DEBUG  ]  No samples found: adapterRemoval
+[2019-10-25 08:08:46,224] multiqc                                            [DEBUG  ]  No samples found: clipandmerge
+[2019-10-25 08:08:46,234] multiqc                                            [DEBUG  ]  No samples found: cutadapt
+[2019-10-25 08:08:46,254] multiqc                                            [DEBUG  ]  No samples found: flexbar
+[2019-10-25 08:08:46,266] multiqc                                            [DEBUG  ]  No samples found: trimmomatic
+[2019-10-25 08:08:46,277] multiqc                                            [DEBUG  ]  No samples found: skewer
+[2019-10-25 08:08:46,308] multiqc                                            [DEBUG  ]  No samples found: sortmerna
+[2019-10-25 08:08:46,319] multiqc                                            [DEBUG  ]  No samples found: biobloomtools
+[2019-10-25 08:08:46,330] multiqc                                            [DEBUG  ]  No samples found: fastq_screen
+[2019-10-25 08:08:46,341] multiqc                                            [DEBUG  ]  No samples found: afterqc
+[2019-10-25 08:08:46,353] multiqc                                            [DEBUG  ]  No samples found: fastp
+[2019-10-25 08:08:50,993] multiqc.modules.fastqc.fastqc                      [INFO   ]  Found 148 reports
+[2019-10-25 08:08:53,717] multiqc                                            [DEBUG  ]  No samples found: minionqc
+[2019-10-25 08:08:53,728] multiqc                                            [DEBUG  ]  No samples found: clusterflow
+[2019-10-25 08:08:53,740] multiqc                                            [DEBUG  ]  No samples found: bcl2fastq
+[2019-10-25 08:08:53,751] multiqc                                            [DEBUG  ]  No samples found: interop
+[2019-10-25 08:08:53,761] multiqc                                            [DEBUG  ]  No samples found: flash
+[2019-10-25 08:08:53,943] multiqc                                            [INFO   ]  Compressing plot data
+[2019-10-25 08:08:55,930] multiqc                                            [INFO   ]  Report      : multiqc_dna_trimmed/multiqc_report.html
+[2019-10-25 08:08:55,931] multiqc                                            [INFO   ]  Data        : multiqc_dna_trimmed/multiqc_data
+[2019-10-25 08:08:55,932] multiqc                                            [DEBUG  ]  Moving data file from '/tmp/tmp7g27fu87/multiqc_data/multiqc_fastqc.txt' to 'multiqc_dna_trimmed/multiqc_data'
+[2019-10-25 08:08:55,934] multiqc                                            [DEBUG  ]  Moving data file from '/tmp/tmp7g27fu87/multiqc_data/multiqc_general_stats.txt' to 'multiqc_dna_trimmed/multiqc_data'
+[2019-10-25 08:08:55,936] multiqc                                            [DEBUG  ]  Moving data file from '/tmp/tmp7g27fu87/multiqc_data/multiqc_sources.txt' to 'multiqc_dna_trimmed/multiqc_data'
+[2019-10-25 08:08:55,938] multiqc                                            [DEBUG  ]  Moving data file from '/tmp/tmp7g27fu87/multiqc_data/multiqc_data.json' to 'multiqc_dna_trimmed/multiqc_data'
+[2019-10-25 08:08:56,292] multiqc                                            [INFO   ]  MultiQC complete

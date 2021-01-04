@@ -1,0 +1,6 @@
+{
+  "raw_vcf_directory": "/scratch/tphung3/Cayo_x_inactivation/01_macaque_data_processing/genotyped_vcfs/",
+  "chrm": ["x", "8"],
+  "extract_stats_from_vcf_script_path": "/home/tphung3/softwares/tanya_repos/CustomFilterVCF/extract_stats_from_vcf.py",
+  "plot_stats_script_path": "/home/tphung3/softwares/tanya_repos/CustomFilterVCF/plot_stats.R"
+}

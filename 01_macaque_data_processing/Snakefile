@@ -1,0 +1,585 @@
+import os
+
+configfile: "cayo_config.json"
+
+fastq_directory = "/data/CEM/wilsonlab/lab_generated/cayo/fastqs/"
+adapter_path = "misc/adapter_sequence.fa"
+
+fastq_prefixes_dna = [
+	config[x]["fq1"][:-9] for x in config["dna"]] + [
+		config[x]["fq2"][:-9] for x in config["dna"]]
+
+fastq_prefixes_rna = [
+	config[x]["fq1"][:-9] for x in config["rna"]] + [
+		config[x]["fq2"][:-9] for x in config["rna"]]
+
+dna_samples = config["dna"]
+rna_samples = config["rna"]
+
+assemblies_to_reduce = ["mmul8"]
+
+genomes_to_use = ["mmul8"]
+
+gatk_path = "/home/tphung3/softwares/gatk-4.1.0.0/gatk"
+gatk3_path = "/home/tphung3/softwares/GenomeAnalysisTK-3.8-0-ge9d806836/GenomeAnalysisTK.jar"
+bcftools_path = "bcftools"
+
+rule all:
+	input:
+		expand(
+			"multiqc_{type}/multiqc_report.html",
+			type=["dna", "rna"]), #generate multiqc report before trimming
+		expand(
+			"multiqc_{type}_trimmed/multiqc_report.html",
+			type=["dna", "rna"]), #generate multiqc report after trimming
+		expand(
+			"bam_stats/rna/{sample}.{genome}.rna.sorted.stats",
+			sample=rna_samples, genome=genomes_to_use), #mapping rna
+		expand(
+			"bam_stats/dna/{sample}.{genome}.mkdup.sorted.stats",
+			sample=dna_samples, genome=genomes_to_use), #mapping dna
+		expand(
+			"processed_bams/rna/{sample}.{genome}.sorted.bam.bai", sample=rna_samples, genome=genomes_to_use), #index bam for rna
+		expand(
+			"genotyped_vcfs/{genome}.chrx.gatk.called.raw.vcf.gz",
+			genome=genomes_to_use), #calling variants on chrX,
+		"genotyped_vcfs/mmul8.chrx.gatk.called.hard.filter.vcf.gz", #hard filter on chrX
+		expand(
+			"genotyped_vcfs/mmul8.chrx.gatk.called.hard.filter.biallelics.{sample_name}.vcf", sample_name=config["dna"]), #select biallelic for each sample on chrX
+		expand(
+			"genotyped_vcfs/mmul8.chrx.gatk.called.hard.filter.biallelics.{sample_name}_het.vcf", sample_name=config["dna"]), #select biallelic and het for each sample on chrX
+		expand(
+			"genotyped_vcfs/{genome}.chr{chr_n}.gatk.called.raw.vcf.gz", genome=genomes_to_use, chr_n=config["autosomes"]), #calling variants on autosomes (chr1 to chr20)
+		expand(
+			"genotyped_vcfs/mmul8.chr{chr_n}.gatk.called.hard.filter.vcf.gz", chr_n=config["autosomes"]), #hard filter on autosomes (chr1 to chr20)
+		expand(
+			"genotyped_vcfs/mmul8.chr{chr_n}.gatk.called.hard.filter.biallelics.vcf.gz", chr_n=config["autosomes"]), #select biallelic on autosomes (chr1 to chr20)
+		expand(
+			"genotyped_vcfs/mmul8.chr{chr_n}.gatk.called.hard.filter.biallelics.{sample_name}.vcf", chr_n=config["autosomes"], sample_name=config["dna"]), #subset individuals after hard Filter on autosomes (chr1 to chr20)
+		expand(
+			"genotyped_vcfs/mmul8.chr{chr_n}.gatk.called.hard.filter.biallelics.{sample_name}_het.vcf", chr_n=config["autosomes"], sample_name=config["dna"]) #select biallelic and hets for each sample on autosomes (chr1 to chr20)
+# ------------------
+# Before trimming QC
+# ------------------
+
+rule fastqc_analysis_dna:
+	input:
+		os.path.join(fastq_directory, "{fq_prefix}.fastq.gz")
+	output:
+		"fastqc_dna/{fq_prefix}_fastqc.html"
+	shell:
+		"PERL5LIB=/home/tphung3/softwares/miniconda3/envs/epitopepipeline/lib/site_perl/5.26.2/ fastqc -o fastqc_dna {input}"
+
+rule multiqc_analysis_dna:
+	input:
+		expand(
+			"fastqc_dna/{fq_prefix}_fastqc.html",
+			fq_prefix=fastq_prefixes_dna)
+	output:
+		"multiqc_dna/multiqc_report.html"
+	shell:
+		"export LC_ALL=en_US.UTF-8 && export LANG=en_US.UTF-8 && "
+		"multiqc --interactive -f -o multiqc_dna fastqc_dna"
+
+rule fastqc_analysis_rna:
+	input:
+		os.path.join(fastq_directory, "{fq_prefix}.fastq.gz")
+	output:
+		"fastqc_rna/{fq_prefix}_fastqc.html"
+	shell:
+		"PERL5LIB=/home/tphung3/softwares/miniconda3/envs/epitopepipeline/lib/site_perl/5.26.2/ fastqc -o fastqc_rna {input}"
+
+rule multiqc_analysis_rna:
+	input:
+		expand(
+			"fastqc_rna/{fq_prefix}_fastqc.html",
+			fq_prefix=fastq_prefixes_rna)
+	output:
+		"multiqc_rna/multiqc_report.html"
+	shell:
+		"export LC_ALL=en_US.UTF-8 && export LANG=en_US.UTF-8 && "
+		"multiqc --interactive -f -o multiqc_rna fastqc_rna"
+
+# -------------
+# Trim adapters
+# -------------
+rule trim_adapters_paired_bbduk_dna:
+	input:
+		fq1 = lambda wildcards: os.path.join(fastq_directory, config[wildcards.sample]["fq1"]),
+		fq2 = lambda wildcards: os.path.join(fastq_directory, config[wildcards.sample]["fq2"])
+	output:
+		out_fq1 = "trimmed_fastqs_dna/{sample}_trimmed_read1.fastq.gz",
+		out_fq2 = "trimmed_fastqs_dna/{sample}_trimmed_read2.fastq.gz"
+	params:
+		adapter = adapter_path
+	threads:
+		2
+	shell:
+		"bbduk.sh -Xmx3g in1={input.fq1} in2={input.fq2} out1={output.out_fq1} out2={output.out_fq2} ref={params.adapter} ktrim=r k=21 mink=11 hdist=2 tbo tpe qtrim=rl trimq=10"
+
+rule trim_adapters_paired_bbduk:
+	input:
+		fq1 = lambda wildcards: os.path.join(fastq_directory, config[wildcards.sample]["fq1"]),
+		fq2 = lambda wildcards: os.path.join(fastq_directory, config[wildcards.sample]["fq2"])
+	output:
+		out_fq1 = "trimmed_fastqs_rna/{sample}_trimmed_read1.fastq.gz",
+		out_fq2 = "trimmed_fastqs_rna/{sample}_trimmed_read2.fastq.gz"
+	params:
+		adapter = adapter_path
+	threads:
+		2
+	shell:
+		"bbduk.sh -Xmx3g in1={input.fq1} in2={input.fq2} "
+		"out1={output.out_fq1} out2={output.out_fq2} "
+		"ref={params.adapter} ktrim=r k=21 mink=11 hdist=2 tbo tpe "
+		"qtrim=rl trimq=15 minlen=55 maq=20"
+
+# -----------------
+# After trimming QC
+# -----------------
+rule fastqc_analysis_trimmed:
+	input:
+		fq1 = "trimmed_fastqs_{n_type}/{sample}_trimmed_read1.fastq.gz",
+		fq2 = "trimmed_fastqs_{n_type}/{sample}_trimmed_read2.fastq.gz"
+	output:
+		html1 = "fastqc_trimmed_{n_type}/{sample}_trimmed_read1_fastqc.html",
+		html2 = "fastqc_trimmed_{n_type}/{sample}_trimmed_read2_fastqc.html"
+	params:
+		t = "{n_type}"
+	shell:
+		"PERL5LIB=/home/tphung3/softwares/miniconda3/envs/epitopepipeline/lib/site_perl/5.26.2/ fastqc -o fastqc_trimmed_{params.t} {input.fq1} {input.fq2}"
+
+rule multiqc_analysis_trimmed_dna:
+	input:
+		expand(
+			"fastqc_trimmed_dna/{sample}_trimmed_read1_fastqc.html",
+			sample=dna_samples)
+	output:
+		"multiqc_dna_trimmed/multiqc_report.html"
+	shell:
+		"export LC_ALL=en_US.UTF-8 && export LANG=en_US.UTF-8 && "
+		"multiqc --interactive -f -o multiqc_dna_trimmed fastqc_trimmed_dna"
+
+rule multiqc_analysis_trimmed_rna:
+	input:
+		expand(
+			"fastqc_trimmed_rna/{sample}_trimmed_read1_fastqc.html",
+			sample=rna_samples)
+	output:
+		"multiqc_rna_trimmed/multiqc_report.html"
+	shell:
+		"export LC_ALL=en_US.UTF-8 && export LANG=en_US.UTF-8 && "
+		"multiqc --interactive -f -o multiqc_rna_trimmed fastqc_trimmed_rna"
+
+# -----------------------------------------------------------------------------------
+# Reference Prep Rules
+# -- note that this pipeline is currently configured assuming all samples are female
+# -----------------------------------------------------------------------------------
+
+rule download_reference:
+	output:
+		"reference/{genome}.fasta"
+	params:
+		initial_output = "reference/{genome}.fasta.gz",
+		address = lambda wildcards: config["reference_address"][wildcards.genome]
+	run:
+		shell("wget {params.address} -O {params.initial_output}")
+		shell("gunzip {params.initial_output}")
+
+rule reduce_contigs:
+	input:
+		"reference/{genome}.fasta"
+	output:
+		"reference/{genome}.reduced.fa"
+	params:
+		bed = "reference/{genome}.reduced.bed"
+	run:
+		if wildcards.genome in assemblies_to_reduce:
+			shell(
+				"python scripts/Reduce_contigs.py --mode LENGTH "
+				"--fasta {input} --output_fasta {output} "
+				"--output_bed {params.bed} --size 10000")
+		else:
+			shell(
+				"ln -s ../{} {{output}} && touch -h {{output}}".format(input))
+
+rule xyalign_create_references:
+	input:
+		ref = "reference/{assembly}.reduced.fa"
+	output:
+		xx = "xyalign/reference/{assembly}.XXonly.fa",
+		xy = "xyalign/reference/{assembly}.XY.fasta"
+	conda:
+		"envs/xyalign.yml"
+	params:
+		gen_assembly = "{assembly}",
+		output_dir = "xyalign",
+		x = lambda wildcards: config["chrx"][wildcards.assembly],
+		y = lambda wildcards: config["chry"][wildcards.assembly]
+	shell:
+		"xyalign --PREPARE_REFERENCE --ref {input} --bam null "
+		"--xx_ref_out {output.xx} --xy_ref_out {output.xy} "
+		"--output_dir {params.output_dir} --x_chromosome {params.x} "
+		"--y_chromosome {params.y}"
+
+rule prepare_reference_females_dna:
+	input:
+		"xyalign/reference/{assembly}.XXonly.fa"
+	output:
+		fai = "xyalign/reference/{assembly}.XXonly.fa.fai",
+		amb = "xyalign/reference/{assembly}.XXonly.fa.amb",
+		dict = "xyalign/reference/{assembly}.XXonly.dict"
+	run:
+		# faidx
+		shell("samtools faidx {input}")
+		# .dict
+		shell("samtools dict -o {output.dict} {input}")
+		# bwa
+		shell("bwa index {input}")
+
+rule hisat2_reference_index_females_dna:
+	input:
+		"xyalign/reference/{assembly}.XXonly.fa"
+	output:
+		expand(
+			"hisat2/{{assembly}}.{suffix}.ht2",
+			suffix=[
+				"1", "2", "3", "4", "5", "6", "7", "8"])
+	shell:
+		"hisat2-build {input} hisat2/{wildcards.assembly}"
+
+# ------------------
+# Read mapping rules
+# ------------------
+
+rule hisat2_map_reads:
+	input:
+		idx = expand(
+			"hisat2/{{genome}}.{suffix}.ht2",
+			suffix=["1", "2", "3", "4", "5", "6", "7", "8"]),
+		fq1 = "trimmed_fastqs_rna/{sample}_trimmed_read1.fastq.gz",
+		fq2 = "trimmed_fastqs_rna/{sample}_trimmed_read2.fastq.gz"
+	output:
+		"processed_bams/rna/{sample}.{genome}.sorted.bam"
+	threads:
+		4
+	params:
+		threads = 4,
+		id = lambda wildcards: config[wildcards.sample]["ID"],
+		sm = lambda wildcards: config[wildcards.sample]["SM"],
+		lb = lambda wildcards: config[wildcards.sample]["LB"],
+		pu = lambda wildcards: config[wildcards.sample]["PU"],
+		pl = lambda wildcards: config[wildcards.sample]["PL"]
+	shell:
+		"PERL5LIB=/home/tphung3/softwares/miniconda3/envs/epitopepipeline/lib/site_perl/5.26.2/ hisat2 -p {params.threads} --dta "
+		"--rg-id {params.id} --rg SM:{params.sm} --rg LB:{params.lb} "
+		"--rg PU:{params.pu} --rg PL:{params.pl} "
+		"-x hisat2/{wildcards.genome} "
+		"-1 {input.fq1} -2 {input.fq2} | "
+		"samtools sort -O bam -o {output}"
+
+rule index_bam_rna:
+	input:
+		"processed_bams/rna/{sample}.{genome}.sorted.bam"
+	output:
+		"processed_bams/rna/{sample}.{genome}.sorted.bam.bai"
+	shell:
+		"samtools index {input}"
+
+rule bam_stats_rna:
+	input:
+		"processed_bams/rna/{sample}.{genome}.sorted.bam"
+	output:
+		"bam_stats/rna/{sample}.{genome}.rna.sorted.stats"
+	shell:
+		"samtools stats {input} | grep ^SN | cut -f 2- > {output}"
+
+rule map_and_process_trimmed_reads_dna:
+	input:
+		fq1 = "trimmed_fastqs_dna/{sample}_trimmed_read1.fastq.gz",
+		fq2 = "trimmed_fastqs_dna/{sample}_trimmed_read2.fastq.gz",
+		fai_xx = "xyalign/reference/{assembly}.XXonly.fa.fai",
+		ref_xx = "xyalign/reference/{assembly}.XXonly.fa"
+	output:
+		"processed_bams/dna/{sample}.{assembly}.mkdup.sorted.bam"
+	params:
+		id = lambda wildcards: config[wildcards.sample]["ID"],
+		sm = lambda wildcards: config[wildcards.sample]["SM"],
+		lb = lambda wildcards: config[wildcards.sample]["LB"],
+		pu = lambda wildcards: config[wildcards.sample]["PU"],
+		pl = lambda wildcards: config[wildcards.sample]["PL"]
+	threads:
+		4
+	shell:
+		"bwa mem -t {threads} -R "
+		"'@RG\\tID:{params.id}\\tSM:{params.sm}\\tLB:{params.lb}\\tPU:{params.pu}\\tPL:{params.pl}' "
+		"{input.ref_xx} {input.fq1} {input.fq2} "
+		"| samblaster "
+		"| samtools fixmate -O bam - - | samtools sort "
+		"-O bam -o {output}"
+
+rule index_bam_dna:
+	input:
+		"processed_bams/dna/{sample}.{genome}.mkdup.sorted.bam"
+	output:
+		"processed_bams/dna/{sample}.{genome}.mkdup.sorted.bam.bai"
+	shell:
+		"samtools index {input}"
+
+rule bam_stats_dna:
+	input:
+		"processed_bams/dna/{sample}.{genome}.mkdup.sorted.bam"
+	output:
+		"bam_stats/dna/{sample}.{genome}.mkdup.sorted.stats"
+	shell:
+		"samtools stats {input} | grep ^SN | cut -f 2- > {output}"
+
+# -----------------
+# Call variants dna
+# -----------------
+
+rule gatk_gvcf_chrx:
+	input:
+		ref = "xyalign/reference/{genome}.XXonly.fa",
+		bam = "processed_bams/dna/{sample}.{genome}.mkdup.sorted.bam",
+		bai = "processed_bams/dna/{sample}.{genome}.mkdup.sorted.bam.bai"
+	output:
+		"gvcfs/{sample}.{genome}.chrx.g.vcf.gz"
+	params:
+		gatk = gatk_path,
+		x_chrom = lambda wildcards: config["chrx"][wildcards.genome]
+	threads:
+		4
+	shell:
+		"{params.gatk} "
+		"HaplotypeCaller -R {input.ref} -I {input.bam} -L {params.x_chrom} "
+		"--emit-ref-confidence GVCF --output {output}"
+
+rule gatk_combinegvcfs_chrx:
+	input:
+		ref = "xyalign/reference/{genome}.XXonly.fa",
+		gvcfs = expand(
+			"gvcfs/{sample}.{{genome}}.chrx.g.vcf.gz", sample=dna_samples)
+	output:
+		"combined_gvcfs/{genome}.chrx.gatk.combinegvcf.g.vcf.gz"
+	params:
+		gatk = gatk_path
+	threads:
+		4
+	run:
+		variant_files = []
+		for i in input.gvcfs:
+			variant_files.append("--variant " + i)
+		variant_files = " ".join(variant_files)
+		shell(
+			"""{params.gatk} --java-options "-Xmx10g" """
+			"""CombineGVCFs -R {input.ref} {variant_files} -O {output}""")
+
+rule gatk_genotypegvcf_chrx:
+	input:
+		ref = "xyalign/reference/{genome}.XXonly.fa",
+		gvcf = "combined_gvcfs/{genome}.chrx.gatk.combinegvcf.g.vcf.gz"
+	output:
+		"genotyped_vcfs/{genome}.chrx.gatk.called.raw.vcf.gz"
+	params:
+		gatk = gatk_path
+	threads:
+		4
+	shell:
+		"""{params.gatk} --java-options "-Xmx10g" """
+		"""GenotypeGVCFs -R {input.ref} -V {input.gvcf} -O {output}"""
+
+# -----------
+# Hard filter
+# -----------
+rule hard_filter:
+	input:
+		ref = "xyalign/reference/mmul8.XXonly.fa",
+		vcf = "genotyped_vcfs/mmul8.chrx.gatk.called.raw.vcf.gz"
+	output:
+		"genotyped_vcfs/mmul8.chrx.gatk.called.hard.filter.vcf.gz"
+	params:
+		gatk = gatk3_path
+	shell:
+		"""java -jar {params.gatk} """
+		"""-R {input.ref} """
+		"""-T SelectVariants """
+		"""-V {input.vcf} """
+		"""-o {output} """
+		"""-select "AN >= 4 && MQ > 40.0 && QD > 5.0 && DP <= 1500.0" """
+
+# ----------------------------------------
+# Further processing VCF
+# 1. Restrict to biallelic sites
+# 2. Subset VCF files for each individual
+# 3. Keep only the heterozygous sites
+# ----------------------------------------
+rule gatk_selectbiallelic:
+    input:
+        ref = "xyalign/reference/mmul8.XXonly.fa",
+        vcf = "genotyped_vcfs/mmul8.chrx.gatk.called.hard.filter.vcf.gz"
+    output:
+        "genotyped_vcfs/mmul8.chrx.gatk.called.hard.filter.biallelics.vcf.gz"
+    params:
+        gatk = gatk3_path
+    shell:
+        """java -jar {params.gatk} """
+        """-T SelectVariants """
+        """-R {input.ref} """
+        """-V {input.vcf} """
+        """-o {output} """
+        """-restrictAllelesTo BIALLELIC """
+
+rule subset_individuals_hard_filter:
+    input:
+        "genotyped_vcfs/mmul8.chrx.gatk.called.hard.filter.biallelics.vcf.gz"
+    output:
+        "genotyped_vcfs/mmul8.chrx.gatk.called.hard.filter.biallelics.{sample_name}.vcf"
+    params:
+        bcftools = bcftools_path,
+        sample = lambda wildcards: config[wildcards.sample_name]["SM"]
+    shell:
+        """{params.bcftools} view -s {params.sample} {input} > {output}"""
+
+# After subsetting for each individual. In some individuals,
+# the genotypes could be homozygous for the reference. This next rule is to remove these sites.
+rule gatk_selectheterozygous:
+    input:
+        ref = "xyalign/reference/mmul8.XXonly.fa",
+        vcf = "genotyped_vcfs/mmul8.chrx.gatk.called.hard.filter.biallelics.{sample_name}.vcf"
+    output:
+        "genotyped_vcfs/mmul8.chrx.gatk.called.hard.filter.biallelics.{sample_name}_het.vcf"
+    params:
+        gatk = gatk3_path
+    shell:
+        """java -jar {params.gatk} """
+        """ -T SelectVariants """
+        """-R {input.ref} """
+        """-V {input.vcf} """
+        """-o {output} """
+        """-select "AC == 1" """
+
+# ---------------------------------------
+# Processing of autosomes (chr1 to chr20)
+# ---------------------------------------
+rule gatk_gvcf_autosomes:
+	input:
+		ref = "xyalign/reference/{genome}.XXonly.fa",
+		bam = "processed_bams/dna/{sample}.{genome}.mkdup.sorted.bam",
+		bai = "processed_bams/dna/{sample}.{genome}.mkdup.sorted.bam.bai"
+	output:
+		"gvcfs/{sample}.{genome}.chr{chr_n}.g.vcf.gz"
+	params:
+		gatk = gatk_path,
+		chr_n = "{chr_n}"
+	threads:
+		4
+	shell:
+		"{params.gatk} "
+		"HaplotypeCaller -R {input.ref} -I {input.bam} -L {params.chr_n} "
+		"--emit-ref-confidence GVCF --output {output}"
+
+rule gatk_combinegvcfs_autosomes:
+	input:
+		ref = "xyalign/reference/{genome}.XXonly.fa",
+		gvcfs = expand(
+			"gvcfs/{sample}.{genome}.chr{chr_n}.g.vcf.gz", sample=dna_samples, chr_n=config["autosomes"], genome=genomes_to_use)
+	output:
+		"combined_gvcfs/{genome}.chr{chr_n}.gatk.combinegvcf.g.vcf.gz"
+	params:
+		gatk = gatk_path,
+		chr_n = "{chr_n}"
+	threads:
+		4
+	run:
+		variant_files = []
+		for i in input.gvcfs:
+			variant_files.append("--variant " + i)
+		variant_files = " ".join(variant_files)
+		shell(
+			"""{params.gatk} --java-options "-Xmx10g" """
+			"""CombineGVCFs -R {input.ref} {variant_files} --intervals {params.chr_n} -O {output}""")
+
+rule gatk_genotypegvcf_autosomes:
+	input:
+		ref = "xyalign/reference/{genome}.XXonly.fa",
+		gvcf = "combined_gvcfs/{genome}.chr{chr_n}.gatk.combinegvcf.g.vcf.gz"
+	output:
+		"genotyped_vcfs/{genome}.chr{chr_n}.gatk.called.raw.vcf.gz"
+	params:
+		gatk = gatk_path
+	threads:
+		4
+	shell:
+		"""{params.gatk} --java-options "-Xmx10g" """
+		"""GenotypeGVCFs -R {input.ref} -V {input.gvcf} -O {output}"""
+
+# ------------------------
+# Hard Filter on autosomes
+# ------------------------
+rule hard_filter_autosomes:
+	input:
+		ref = "xyalign/reference/mmul8.XXonly.fa",
+		vcf = "genotyped_vcfs/mmul8.chr{chr_n}.gatk.called.raw.vcf.gz"
+	output:
+		"genotyped_vcfs/mmul8.chr{chr_n}.gatk.called.hard.filter.vcf.gz"
+	params:
+		gatk = gatk3_path
+	shell:
+		"""java -jar {params.gatk} """
+		"""-R {input.ref} """
+		"""-T SelectVariants """
+		"""-V {input.vcf} """
+		"""-o {output} """
+		"""-select "AN >= 4 && MQ > 40.0 && QD > 7.0 && DP <= 1500.0" """
+
+#----------------------------------------
+# Further processing VCF
+# 1. Restrict to biallelic sites
+# 2. Subset VCF files for each individual
+# 3. Keep only the heterozygous sites
+#----------------------------------------
+rule gatk_selectbiallelic_autosomes:
+    input:
+        ref = "xyalign/reference/mmul8.XXonly.fa",
+        vcf = "genotyped_vcfs/mmul8.chr{chr_n}.gatk.called.hard.filter.vcf.gz"
+    output:
+        "genotyped_vcfs/mmul8.chr{chr_n}.gatk.called.hard.filter.biallelics.vcf.gz"
+    params:
+        gatk = gatk3_path
+    shell:
+        """java -jar {params.gatk} """
+        """-T SelectVariants """
+        """-R {input.ref} """
+        """-V {input.vcf} """
+        """-o {output} """
+        """-restrictAllelesTo BIALLELIC """
+
+rule subset_individuals_hard_filter_autosomes:
+    input:
+        "genotyped_vcfs/mmul8.chr{chr_n}.gatk.called.hard.filter.biallelics.vcf.gz"
+    output:
+        "genotyped_vcfs/mmul8.chr{chr_n}.gatk.called.hard.filter.biallelics.{sample_name}.vcf"
+    params:
+        bcftools = bcftools_path,
+        sample = lambda wildcards: config[wildcards.sample_name]["SM"]
+    shell:
+        """{params.bcftools} view -s {params.sample} {input} > {output}"""
+
+# After subsetting for each individual. In some individuals,
+# the genotypes could be homozygous for the reference. This next rule is to remove these sites.
+rule gatk_selectheterozygous_autosomes:
+    input:
+        ref = "xyalign/reference/mmul8.XXonly.fa",
+        vcf = "genotyped_vcfs/mmul8.chr{chr_n}.gatk.called.hard.filter.biallelics.{sample_name}.vcf"
+    output:
+        "genotyped_vcfs/mmul8.chr{chr_n}.gatk.called.hard.filter.biallelics.{sample_name}_het.vcf"
+    params:
+        gatk = gatk3_path
+    shell:
+        """java -jar {params.gatk} """
+        """ -T SelectVariants """
+        """-R {input.ref} """
+        """-V {input.vcf} """
+        """-o {output} """
+        """-select "AC == 1" """

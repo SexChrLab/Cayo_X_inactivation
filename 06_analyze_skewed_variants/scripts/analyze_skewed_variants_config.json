@@ -1,0 +1,25 @@
+{
+  "convert_unphased_data_to_bed_script": "/scratch/tphung3/Cayo_x_inactivation/06_analyze_skewed_variants/scripts/convert_unphased_data_to_bed.py",
+  "remove_duplicates_script": "/scratch/tphung3/Cayo_x_inactivation/06_analyze_skewed_variants/scripts/remove_duplicates.py",
+  "compute_allele_balance_script": "/scratch/tphung3/Cayo_x_inactivation/06_analyze_skewed_variants/scripts/compute_allele_balance.py",
+  "tabulate_statistics_script": "/scratch/tphung3/Cayo_x_inactivation/06_analyze_skewed_variants/scripts/tabulate_number_of_variants_in_coding_regions.py",
+  "sample_ids": [
+    "PT104219",
+    "PT103352",
+    "PT105290",
+    "PT102485",
+    "PT105239",
+    "PT104883",
+    "PT103811",
+    "PT102842",
+    "PT101210",
+    "PT101159"
+  ],
+  "missing_lung_samples":["PT103046", "PT104733"],
+  "missing_gonads_samples":["PT103760", "PT104270"],
+  "all_tissues": ["heart", "liver", "lung", "gonads", "adrenal", "pituitary"],
+  "missing_lung_tissues": ["heart", "liver", "gonads", "adrenal", "pituitary"],
+  "missing_gonads_tissues": ["heart", "liver", "lung", "adrenal", "pituitary"],
+  "autosomes": ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20"],
+  "all_chromosomes": ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "X"]
+}

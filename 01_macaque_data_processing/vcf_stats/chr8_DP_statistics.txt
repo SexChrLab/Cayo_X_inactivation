@@ -1,0 +1,2 @@
+DP_mean	DP_median	DP_normed_mean	DP_normed_median
+276.774544349939	199	20.4351257611533	14.458041958042

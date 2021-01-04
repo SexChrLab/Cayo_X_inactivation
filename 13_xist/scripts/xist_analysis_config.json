@@ -1,0 +1,45 @@
+{
+  "convert_asereadcounter_to_bed_script": "/scratch/tphung3/Cayo_x_inactivation/13_xist/scripts/convert_asereadcounter_to_bed.py",
+  "samples": [
+		"PT101159",
+		"PT101210",
+		"PT102485",
+		"PT102842",
+		"PT103352",
+		"PT103811",
+		"PT104219",
+		"PT104883",
+		"PT105239",
+		"PT105290"
+  ],
+  "missing_lung_samples": [
+    "PT103046",
+    "PT104733"
+  ],
+  "missing_gonads_samples": [
+    "PT103760",
+    "PT104270"
+  ],
+  "tissues": [
+    "adrenal",
+    "heart",
+    "liver",
+    "lung",
+    "pituitary",
+    "gonads"
+  ],
+  "missing_lung_tissues": [
+    "adrenal",
+    "heart",
+    "liver",
+    "pituitary",
+    "gonads"
+  ],
+  "missing_gonads_tissues": [
+    "adrenal",
+    "heart",
+    "liver",
+    "lung",
+    "pituitary"
+  ]
+}

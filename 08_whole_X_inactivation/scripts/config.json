@@ -1,0 +1,46 @@
+{
+  "dna": [
+		"PT101159",
+		"PT101210",
+		"PT102485",
+		"PT102842",
+		"PT103352",
+		"PT103811",
+		"PT104219",
+		"PT104883",
+		"PT105239",
+		"PT105290"
+	],
+  "sample_with_6_tissues": [
+		"PT101159",
+		"PT101210",
+		"PT102485",
+		"PT102842",
+		"PT103352",
+		"PT103811",
+		"PT104219",
+		"PT104883",
+		"PT105239",
+		"PT105290"
+  ],
+  "missing_lung_samples": [
+    "PT103046",
+    "PT104733"
+  ],
+  "missing_gonads_samples": [
+    "PT103760",
+    "PT104270"
+  ],
+  "GTEx_dna": [
+    "GTEX-12WSD-0002",
+    "GTEX-1A8FM-0004",
+    "GTEX-1A32A-0001",
+    "GTEX-14DAQ-0004",
+    "GTEX-131YS-0003",
+    "GTEX-11GSP-0004",
+    "GTEX-15ER7-0002"
+  ],
+  "phased_chrX_data_directory": "/agavescratch/tphung3/Cayo_x_inactivation/whole_X_inactivation/results/phase_whole_X/minDepth10",
+  "phased_chrX_GTEx_data_directory": "/agavescratch/tphung3/Cayo_x_inactivation/GTEx/GTEx_v8/asereadcounter/post_asereadcounter_processing/minDepth10"
+
+}

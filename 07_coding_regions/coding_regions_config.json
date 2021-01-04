@@ -1,0 +1,40 @@
+{
+  "convert_phased_data_to_bed_script": "/agavescratch/tphung3/Cayo_x_inactivation/coding_regions/scripts/convert_phased_data_to_bed.py",
+  "convert_unphased_data_to_bed_script": "/agavescratch/tphung3/Cayo_x_inactivation/coding_regions/scripts/convert_unphased_data_to_bed.py",
+  "convert_unphased_GTEx_data_to_bed_script": "/agavescratch/tphung3/Cayo_x_inactivation/coding_regions/scripts/convert_unphased_GTEx_data_to_bed.py",
+  "return_unique_positions_script": "/agavescratch/tphung3/Cayo_x_inactivation/coding_regions/scripts/return_unique_positions_GTEx_phased.py",
+  "sample_ids": [
+    "PT104219",
+    "PT103352",
+    "PT105290",
+    "PT102485",
+    "PT105239",
+    "PT104883",
+    "PT103811",
+    "PT102842",
+    "PT101210",
+    "PT101159"
+  ],
+  "missing_lung_samples":["PT103046", "PT104733"],
+  "missing_gonads_samples":["PT103760", "PT104270"],
+  "all_tissues": ["heart", "liver", "lung", "gonads", "adrenal", "pituitary"],
+  "missing_lung_tissues": ["heart", "liver", "gonads", "adrenal", "pituitary"],
+  "missing_gonads_tissues": ["heart", "liver", "lung", "adrenal", "pituitary"],
+  "phased_chrX_data_directory": "/agavescratch/tphung3/Cayo_x_inactivation/whole_X_inactivation/results/phase_whole_X/minDepth10",
+  "chr": ["chr8", "chrX"],
+  "unphased_data_directory": "/agavescratch/tphung3/Cayo_x_inactivation/asereadcounter/post_asereadcounter_processing/minDepth10",
+  "unphased_GTEx_data_directory": "/agavescratch/tphung3/Cayo_x_inactivation/GTEx/GTEx_v8/asereadcounter/post_asereadcounter_processing/minDepth10",
+  "GTEx_sample_ids": [
+    "GTEX-1A32A-0001",
+    "GTEX-1A8FM-0004",
+    "GTEX-131YS-0003",
+    "GTEX-12WSD-0002",
+    "GTEX-15ER7-0002",
+    "GTEX-11GSP-0004",
+    "GTEX-14DAQ-0004"
+  ],
+  "GTEx_tissues": [
+    "heart", "liver", "lung", "ovary", "adrenal", "pituitary"
+  ],
+  "phased_chrX_GTEx_data_directory": "/agavescratch/tphung3/Cayo_x_inactivation/GTEx/GTEx_v8/asereadcounter/post_asereadcounter_processing/minDepth10",
+}
